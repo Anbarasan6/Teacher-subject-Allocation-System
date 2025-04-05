@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 03:34 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Mar 21, 2025 at 02:23 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,7 @@ CREATE TABLE `tbladmin` (
 --
 
 INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`) VALUES
-(1, 'SuperAdmin', 'admin', 5689784592, 'admin@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2023-05-25 11:58:35');
+(1, 'Admin', 'admin', 8270707598, ' admin@gmail.com', '25d55ad283aa400af464c76d713c07ad', '2024-02-10 11:58:35');
 
 -- --------------------------------------------------------
 
@@ -52,8 +52,9 @@ INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, 
 
 CREATE TABLE `tblcourse` (
   `ID` int(10) NOT NULL,
-  `BranchName` varchar(200) DEFAULT NULL,
   `CourseName` varchar(200) DEFAULT NULL,
+  `BranchName` varchar(200) DEFAULT NULL,
+  `Shift` varchar(20) DEFAULT NULL,
   `CreationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -61,14 +62,16 @@ CREATE TABLE `tblcourse` (
 -- Dumping data for table `tblcourse`
 --
 
-INSERT INTO `tblcourse` (`ID`, `BranchName`, `CourseName`, `CreationDate`) VALUES
-(1, 'Information Technology', 'B.Tech', '2023-05-24 18:08:52'),
-(2, 'Computer Science', 'B.Tech', '2023-05-24 18:08:52'),
-(3, 'Electrical Engineering', 'B.Tech', '2023-05-24 18:08:52'),
-(4, 'Electronics', 'B.Tech', '2023-05-24 18:08:52'),
-(5, 'PCM', 'B.Sc', '2023-05-24 18:08:52'),
-(6, 'ZCB', 'B.Tech', '2023-05-24 18:08:52'),
-(7, 'English', 'B.Ed', '2023-05-24 18:08:52');
+INSERT INTO `tblcourse` (`ID`, `CourseName`, `BranchName`, `Shift`, `CreationDate`) VALUES
+(15, 'BCA, MCA', 'Computer Applications', 'Shift-I & Shift-II', '2024-03-18 17:42:23'),
+(17, 'B.Sc, M.Sc', 'Chemistry', 'Shift-I & Shift-II', '2024-03-18 17:42:28'),
+(19, 'B.Sc, M.Sc', 'Zology', 'Shift-I', '2024-03-18 17:42:32'),
+(21, 'B.Sc, M.Sc', 'Computer Science', 'Shift-I & Shift-II', '2024-03-18 17:42:37'),
+(23, 'B.Sc, M.Sc', 'Mathametics', 'Shift-I & Shift-II', '2024-03-18 17:42:46'),
+(25, 'BA, MA', 'Tamil', 'Shift-I & Shift-II', '2024-03-18 17:42:52'),
+(27, 'BA, MA', 'English', 'Shift-I & Shift-II', '2024-03-18 17:42:56'),
+(29, 'BA, MA', 'History', 'Shift-I & Shift-II', '2024-03-20 04:44:11'),
+(30, 'B.Com. M.Com', 'Commerce', 'Shift-I & Shift-II', '2024-03-20 04:45:15');
 
 -- --------------------------------------------------------
 
@@ -81,6 +84,7 @@ CREATE TABLE `tblsuballocation` (
   `CourseID` int(5) DEFAULT NULL,
   `Teacherempid` varchar(100) DEFAULT NULL,
   `Subid` int(5) DEFAULT NULL,
+  `Years` varchar(10) DEFAULT NULL,
   `AllocationDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -88,12 +92,19 @@ CREATE TABLE `tblsuballocation` (
 -- Dumping data for table `tblsuballocation`
 --
 
-INSERT INTO `tblsuballocation` (`ID`, `CourseID`, `Teacherempid`, `Subid`, `AllocationDate`) VALUES
-(1, 1, 'EMP12345', 3, '2023-05-24 06:02:24'),
-(2, 2, 'Emp102', 2, '2023-05-24 06:02:50'),
-(3, 2, 'Emp102', 8, '2023-05-24 06:03:05'),
-(4, 1, 'Emp101', 3, '2023-05-24 06:03:49'),
-(5, 3, 'Emp103', 5, '2023-05-24 06:04:09');
+INSERT INTO `tblsuballocation` (`ID`, `CourseID`, `Teacherempid`, `Subid`, `Years`, `AllocationDate`) VALUES
+(27, 15, 'CA1001', 33, '2023-2024', '2024-03-20 02:15:35'),
+(29, 15, 'CA1002', 41, '2023-2024', '2024-03-20 02:16:05'),
+(30, 15, 'CA1002', 38, '2023-2024', '2024-03-20 02:16:34'),
+(31, 15, 'CA1001', 40, '2023-2024', '2024-03-20 02:17:00'),
+(36, 15, 'CA1005', 39, '2023-2024', '2024-03-20 02:22:07'),
+(38, 15, 'CA1002', 49, '2023-2024', '2024-03-20 05:07:51'),
+(39, 15, 'CA1001', 51, '2023-2024', '2024-03-20 05:08:07'),
+(40, 15, 'CA1003', 52, '2023-2024', '2024-03-20 05:08:30'),
+(41, 15, 'CA1003', 50, '2023-2024', '2024-03-20 05:08:43'),
+(42, 15, 'CA1004', 50, '2023-2024', '2024-03-20 05:08:57'),
+(45, 15, 'CA1004', 52, '2023-2024', '2024-03-20 05:14:21'),
+(46, 15, 'CA1005', 51, '2023-2024', '2024-03-20 05:14:45');
 
 -- --------------------------------------------------------
 
@@ -105,8 +116,11 @@ CREATE TABLE `tblsubject` (
   `ID` int(5) NOT NULL,
   `CourseID` int(5) DEFAULT NULL,
   `SubjectFullname` varchar(200) DEFAULT NULL,
-  `SubjectShortname` varchar(200) DEFAULT NULL,
+  `Course` varchar(10) DEFAULT NULL,
+  `Year` varchar(10) DEFAULT NULL,
+  `Semester` varchar(10) DEFAULT NULL,
   `SubjectCode` varchar(200) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
   `CreationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -114,15 +128,33 @@ CREATE TABLE `tblsubject` (
 -- Dumping data for table `tblsubject`
 --
 
-INSERT INTO `tblsubject` (`ID`, `CourseID`, `SubjectFullname`, `SubjectShortname`, `SubjectCode`, `CreationDate`) VALUES
-(1, 1, 'Mathematics', 'Math', 'Math101', '2023-05-10 04:45:51'),
-(2, 2, 'Operating System', 'OS', 'OS101', '2023-05-10 05:27:04'),
-(3, 1, 'Digital Electronics', 'DE', 'DE101', '2023-05-10 05:28:05'),
-(4, 3, 'Computer Communication Network', 'CCN', 'CCN101', '2023-05-10 05:28:55'),
-(5, 3, 'Management Information Systems', 'MIS', 'MIS', '2023-05-10 05:29:25'),
-(6, 4, 'Introduction to Microprocessor', 'ITM', 'ITM101', '2023-05-10 05:30:18'),
-(7, 3, 'Relational Database Management System', 'RDBMS', 'RDBMS101', '2023-05-10 05:31:44'),
-(8, 2, 'Artificial Intelligence', 'AI', 'AI102', '2023-05-10 05:32:28');
+INSERT INTO `tblsubject` (`ID`, `CourseID`, `SubjectFullname`, `Course`, `Year`, `Semester`, `SubjectCode`, `Date`, `CreationDate`) VALUES
+(30, 15, 'Foundations of Computer Applications', 'BCA', 'I', 'I-Sem', '21UCA01', '2024-03-17', '2024-03-18 11:10:32'),
+(31, 15, 'Office Automation Lab', 'BCA', 'I', 'I-Sem', '21UCAP1', '2024-03-17', '2024-03-18 11:12:35'),
+(33, 15, 'C Programming Lab', 'BCA', 'I', 'II-Sem', '21UCAP2', '2024-03-17', '2024-03-18 15:24:06'),
+(34, 15, 'Data Structures and OOPS Lab (C++)', 'BCA', 'II', 'III-Sem', '21UCAP3', '2024-03-17', '2024-03-18 15:28:31'),
+(35, 15, 'Data and file Structures', 'BCA', 'II', 'III-Sem', '21UCA02', '2024-03-17', '2024-03-18 15:29:50'),
+(36, 15, 'Computer Architecture', 'BCA', 'II', 'III-Sem', '21UCA04', '2024-03-17', '2024-03-18 15:30:12'),
+(37, 15, 'Object Oriented Programming Using C++', 'BCA', 'II', 'III-Sem', '21UCA05', '2024-03-17', '2024-03-18 17:35:04'),
+(38, 15, 'VB.NET Programming', 'BCA', 'II', 'IV-Sem', '21UCA06', '2024-03-17', '2024-03-18 17:35:55'),
+(39, 15, 'Software Engineering', 'BCA', 'II', 'IV-Sem', '21UCA07', '2024-03-17', '2024-03-18 17:36:21'),
+(40, 15, 'Relational database Management System', 'BCA', 'II', 'IV-Sem', '21UCA08', '2024-03-17', '2024-03-18 17:36:34'),
+(41, 15, 'Visual Basic.Net & RDBMS Lab', 'BCA', 'II', 'IV-Sem', '21UCAP4', '2024-03-17', '2024-03-18 17:36:38'),
+(42, 15, 'Operating System', 'BCA', 'III', 'V-Sem', '21UCA09', '2024-03-17', '2024-03-18 17:36:41'),
+(43, 15, 'Computer Networks', 'BCA', 'III', 'V-Sem', '21UCA10', '2024-03-17', '2024-03-18 17:36:44'),
+(44, 15, 'Core Java Programming', 'BCA', 'III', 'V-Sem', '21UCA011', '2024-03-17', '2024-03-18 17:36:47'),
+(45, 15, 'Graphics and Multimedia System', 'BCA', 'III', 'V-Sem', '21UCAM2', '2024-03-17', '2024-03-18 17:36:49'),
+(46, 15, 'Unix and Shell Programming', 'BCA', 'III', 'V-Sem', '21UCAM3', '2024-03-17', '2024-03-18 17:36:52'),
+(47, 15, 'Programming in Python', 'BCA', 'III', 'VI-Sem', '21UCAP6', '2024-03-17', '2024-03-18 17:36:54'),
+(48, 15, 'Software Development Lab', 'BCA', 'III', 'VI-Sem', '21UCAPR', '2024-03-17', '2024-03-18 17:36:57'),
+(49, 15, 'Open Source Software', 'BCA', 'III', 'VI-Sem', '21UCA12', '2024-03-17', '2024-03-18 17:37:01'),
+(50, 15, 'Python Programming', 'BCA', 'III', 'VI-Sem', '21UCA13', '2024-03-17', '2024-03-18 17:37:03'),
+(51, 15, 'Software Testing', 'BCA', 'III', 'VI-Sem', '21UCAM5', '2024-03-17', '2024-03-18 17:37:08'),
+(52, 15, 'Big Data Analytics', 'BCA', 'III', 'VI-Sem', '21UCAM7', '2024-03-17', '2024-03-18 17:37:11'),
+(56, 20, 'Genetics', NULL, 'I', 'II-Sem', '21PZL04', '2024-03-18', '2024-03-18 04:25:21'),
+(57, 20, 'Genetics', NULL, 'I', 'II-Sem', '21PZL04', '2024-03-18', '2024-03-18 04:25:21'),
+(58, 20, 'Developmental Biology', NULL, 'I', 'II-Sem', '21PZL05', '2024-03-18', '2024-03-18 04:26:05'),
+(59, 20, 'Immunology', NULL, 'I', 'II-Sem', '21PZL06', '2024-03-18', '2024-03-18 04:26:45');
 
 -- --------------------------------------------------------
 
@@ -140,8 +172,10 @@ CREATE TABLE `tblteacher` (
   `Gender` varchar(200) DEFAULT NULL,
   `Dob` varchar(200) DEFAULT NULL,
   `CourseID` int(5) DEFAULT NULL,
+  `Shift` varchar(10) DEFAULT NULL,
   `Religion` varchar(200) DEFAULT NULL,
   `Address` mediumtext DEFAULT NULL,
+  `Qualification` varchar(100) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL,
   `ProfilePic` varchar(200) DEFAULT NULL,
   `JoiningDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -151,11 +185,12 @@ CREATE TABLE `tblteacher` (
 -- Dumping data for table `tblteacher`
 --
 
-INSERT INTO `tblteacher` (`ID`, `EmpID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Gender`, `Dob`, `CourseID`, `Religion`, `Address`, `Password`, `ProfilePic`, `JoiningDate`) VALUES
-(1, 'Emp101', 'Test', 'Sample', 8956231478, 'kaushal@gmail.com', 'Male', '1984-01-05', 1, 'Hindu', 'J-125, Mohan Road Jakirpur Merrut', '202cb962ac59075b964b07152d234b70', '779b7513263ef185b6d094af290ef5401595083511.png', '2023-05-25 01:04:34'),
-(2, 'Emp102', 'Sarita', 'Pandey', 4564877987, 'sar@gmail.com', 'Female', '1990-01-09', 2, 'Hindu', 'K-980', '202cb962ac59075b964b07152d234b70', 'e76de47f621d84adbab3266e3239baee1594385101.png', '2023-05-13 05:22:14'),
-(3, 'Emp103', 'Test', 'Sample', 6544654654, 'test@gmail.com', 'Male', '1990-07-05', 3, 'Hindu', 'B-234 Nehru Nagar New Delhi', '202cb962ac59075b964b07152d234b70', '779b7513263ef185b6d094af290ef5401595247971.png', '2023-05-20 12:26:11'),
-(4, 'EMP12345', 'Anuj', 'Kumar', 1234567890, 'ak@gmail.com', 'Male', '2019-04-02', 1, 'Indian', 'New Delhi India 110101', 'f925916e2754e5e03f75dd58a5733251', 'ea8f8a4ef2a9dbbb375c6f9adf0d35501684818674.jpg', '2023-05-23 05:11:14');
+INSERT INTO `tblteacher` (`ID`, `EmpID`, `FirstName`, `LastName`, `MobileNumber`, `Email`, `Gender`, `Dob`, `CourseID`, `Shift`, `Religion`, `Address`, `Qualification`, `Password`, `ProfilePic`, `JoiningDate`) VALUES
+(7, 'CA1001', 'PREETHA', 'C', 9080423136, 'preetha.gl@gacsalem7.ac.in', 'Female', '1981-06-19', 15, 'Shift-II', 'HINDU', 'salem-7', 'MCA ,M.Phil.,', NULL,  '2024-03-18 11:36:43'),
+(8, 'CA1002', 'GEETHA', 'K', 9677444046, 'geetha.gl@gacsalem7.ac.in', 'Female', '1981-10-16', 15, 'Shift-II', 'HINDU', 'Salem-10', 'MCA ,M.Phil., SET.,', NULL,  '2024-03-20 05:01:52'),
+(9, 'CA1003', 'SELVAKUMAR', 'M', 9944556773, 'selvakumar.gl@gacsalem7.ac.in', 'Male', '1985-07-17', 15, 'Shift-II', 'HINDU', 'Salem 6', NULL, NULL, '2024-03-17 17:53:36'),
+(10, 'CA1004', 'GANDHIRAJA', 'V', 9344214829, 'mrvgandhiraja@gacsalem7.ac.in', 'Male', '1979-04-29', 15, 'Shift-I', 'HINDU', 'Salem-11', NULL, NULL,  '2024-03-17 18:02:46'),
+(11, 'CA1005', 'RAJALAKSHMI', 'A', 9025441815, 'a.rajalakshmigl@gacsalem7.ac.in', 'Female', '1992-04-03', 15, 'Shift-I', 'HINDU', 'Salem-03', NULL, NULL, '2024-03-17 18:05:19');
 
 --
 -- Indexes for dumped tables
@@ -205,25 +240,25 @@ ALTER TABLE `tbladmin`
 -- AUTO_INCREMENT for table `tblcourse`
 --
 ALTER TABLE `tblcourse`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tblsuballocation`
 --
 ALTER TABLE `tblsuballocation`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `tblsubject`
 --
 ALTER TABLE `tblsubject`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `tblteacher`
 --
 ALTER TABLE `tblteacher`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
